@@ -1,3 +1,10 @@
+# [2.3.0-next.3](https://github.com/warp-ds/uno/compare/v2.3.0-next.2...v2.3.0-next.3) (2026-09-29)
+
+
+### Bug Fixes
+
+* **deps:** drop the unocss meta-package peer dependency ([acfda09](https://github.com/warp-ds/uno/commit/acfda09daf0b398814d2ac6de400926faecd31a0))
+
 # [2.3.0-next.2](https://github.com/warp-ds/uno/compare/v2.3.0-next.1...v2.3.0-next.2) (2026-06-17)
 
 
