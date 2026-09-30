@@ -9,6 +9,8 @@ import {
   variantCombinators,
   variantDataAttribute,
   variantAria,
+  variantVariables,
+  variantColorsMediaOrClass,
 } from '@unocss/preset-mini/variants';
 
 import { variantLastChild } from './lastChild.js';
@@ -27,6 +29,8 @@ export const variants = [
   ...variantCombinators,
   variantDataAttribute,
   variantAria,
+  variantVariables,
+  ...variantColorsMediaOrClass({ dark: { dark: ['[data-w-theme=dark]'], light: ['[data-w-theme=light]'] } }),
 ];
 
 export {
@@ -42,4 +46,6 @@ export {
   variantCombinators,
   variantDataAttribute,
   variantAria,
+  variantVariables,
+  variantColorsMediaOrClass,
 };

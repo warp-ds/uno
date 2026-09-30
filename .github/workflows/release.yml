@@ -1,32 +1,34 @@
 name: Release
+
 on:
   push:
     branches:
-      - master
+      - main
       - beta
       - next
+
+permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for trusted publishing and npm provenance
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: lts/*
-      - name: Install pnpm and dependencies
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: true
-      - name: Test
-        run: pnpm test
-      - name: Build
-        run: pnpm build
-      - name: Release
+          cache: "pnpm"
+          node-version: 24.15.0
+      - run: pnpm i
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+      - run: pnpm test
+      - run: pnpm build
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release

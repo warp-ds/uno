@@ -1,3 +1,24 @@
+# [2.3.0-next.3](https://github.com/warp-ds/uno/compare/v2.3.0-next.2...v2.3.0-next.3) (2026-09-29)
+
+
+### Bug Fixes
+
+* **deps:** drop the unocss meta-package peer dependency ([acfda09](https://github.com/warp-ds/uno/commit/acfda09daf0b398814d2ac6de400926faecd31a0))
+
+# [2.3.0-next.2](https://github.com/warp-ds/uno/compare/v2.3.0-next.1...v2.3.0-next.2) (2026-06-17)
+
+
+### Features
+
+* add dark/light mode variants support ([#255](https://github.com/warp-ds/uno/issues/255)) ([2102186](https://github.com/warp-ds/uno/commit/2102186d9c9efccc2c98f85a7da53e705d5ea236))
+
+# [2.3.0-next.1](https://github.com/warp-ds/drive/compare/v2.2.0...v2.3.0-next.1) (2025-11-28)
+
+
+### Features
+
+* enable arbitrary variants ([#250](https://github.com/warp-ds/drive/issues/250)) ([b73502b](https://github.com/warp-ds/drive/commit/b73502b652641af07f8cd111e5c8201f82f887c8))
+
 # [2.2.0](https://github.com/warp-ds/drive/compare/v2.1.0...v2.2.0) (2025-09-09)
 
 
