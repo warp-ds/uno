@@ -1,11 +1,11 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { defineConfig } from 'rollup';
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { defineConfig } from "rollup";
 
 export default defineConfig({
-  input: './src/plugin.js',
+  input: "./src/plugin.js",
   output: {
-    file: './dist/drive.js',
-    format: 'esm',
+    file: "./dist/drive.js",
+    format: "esm",
   },
   plugins: [nodeResolve()],
 });

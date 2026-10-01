@@ -1,9 +1,12 @@
-import { createGenerator } from '@unocss/core';
-import { beforeEach } from 'vitest';
+import { createGenerator } from "@unocss/core";
+import { beforeEach } from "vitest";
 
-import { presetWarp } from '#plugin';
+import { presetWarp } from "#plugin";
 
-export const getGenerator = async (opts = {}) => await createGenerator({ presets: [presetWarp({ ...opts, development: true })] });
+export const getGenerator = async (opts = {}) =>
+  await createGenerator({
+    presets: [presetWarp({ ...opts, development: true })],
+  });
 export const setup = (opts = {}) => {
   beforeEach(async (t) => {
     t.uno = await getGenerator({ ...opts, development: true });

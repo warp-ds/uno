@@ -1,28 +1,39 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test } from "vitest";
 
-import { setup } from './_helpers.js';
+import { setup } from "./_helpers.js";
 
 setup();
 
-describe('list', () => {
-  test('list style type', async ({ uno }) => {
-    const classes = ['list-disc', 'list-circle', 'list-square', 'list-decimal', 'list-zero-decimal', 'list-none'];
+describe("list", () => {
+  test("list style type", async ({ uno }) => {
+    const classes = [
+      "list-disc",
+      "list-circle",
+      "list-square",
+      "list-decimal",
+      "list-zero-decimal",
+      "list-none",
+    ];
     const { css } = await uno.generate(classes);
     expect(css).toMatchSnapshot();
   });
 
-  test('list style position', async ({ uno }) => {
-    const { css } = await uno.generate(['list-outside', 'list-inside']);
+  test("list style position", async ({ uno }) => {
+    const { css } = await uno.generate(["list-outside", "list-inside"]);
     expect(css).toMatchSnapshot();
   });
 
-  test('list style invalid class', async ({ uno }) => {
-    const { css } = await uno.generate(['list-style-invalid', 'list', 'list-[decimal]']);
+  test("list style invalid class", async ({ uno }) => {
+    const { css } = await uno.generate([
+      "list-style-invalid",
+      "list",
+      "list-[decimal]",
+    ]);
     expect(css).toMatchInlineSnapshot('""');
   });
 
-  test('Render style for list-checked', async (t) => {
-    const classes = ['list-checked'];
+  test("Render style for list-checked", async (t) => {
+    const classes = ["list-checked"];
 
     const { css } = await t.uno.generate(classes);
 

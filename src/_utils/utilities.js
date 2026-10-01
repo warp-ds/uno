@@ -1,10 +1,15 @@
-import { toArray } from '@unocss/core';
+/* eslint-disable e18e/prefer-static-regex */
+import { toArray } from "@unocss/core";
 
-import { colorOpacityToString, colorToString, parseCssColor } from './colors.js';
-import { getComponents } from './getComponents.js';
-import { percent } from './handlers/handlers.js';
-import { handler as h } from './handlers/index.js';
-import { directionMap, globalKeywords } from './mappings.js';
+import {
+  colorOpacityToString,
+  colorToString,
+  parseCssColor,
+} from "./colors.js";
+import { getComponents } from "./getComponents.js";
+import { percent } from "./handlers/handlers.js";
+import { handler as h } from "./handlers/index.js";
+import { directionMap, globalKeywords } from "./mappings.js";
 
 /**
  * Provide {@link DynamicMatcher} function returning spacing definition. See spacing rules.
@@ -13,9 +18,10 @@ import { directionMap, globalKeywords } from './mappings.js';
  * @see {@link directionMap}
  */
 export function directionSize(propertyPrefix) {
-  return ([_, direction, size], { theme }) => {
+  return ([, direction, size], { theme }) => {
     const v = theme.spacing?.[size] ?? h.global.auto.fraction(size);
-    if (v != null) return directionMap[direction].map((i) => [`${propertyPrefix}${i}`, v]);
+    if (v != null)
+      return directionMap[direction].map((i) => [`${propertyPrefix}${i}`, v]);
   };
 }
 /**
@@ -26,10 +32,10 @@ function getThemeColor(theme, colors) {
   let index = -1;
   for (const c of colors) {
     index += 1;
-    if (obj && typeof obj !== 'string') {
+    if (obj && typeof obj !== "string") {
       const camel = colors
         .slice(index)
-        .join('-')
+        .join("-")
         .replace(/(-[a-z])/g, (n) => n.slice(1).toUpperCase());
       if (obj[camel]) return obj[camel];
       if (obj[c]) {
@@ -46,7 +52,7 @@ export function splitShorthand(body, type) {
   const split = body.split(/(?:\/|:)/);
 
   if (split[0] === `[${type}`) {
-    return [split.slice(0, 2).join(':'), split[2]];
+    return [split.slice(0, 2).join(":"), split[2]];
   }
 
   return split;
@@ -69,30 +75,31 @@ export function splitShorthand(body, type) {
 export function parseColor(body, theme) {
   const split = body.split(/(?:\/|:)/);
   let main, opacity;
-  if (split[0] === '[color') {
-    main = split.slice(0, 2).join(':');
+  if (split[0] === "[color") {
+    main = split.slice(0, 2).join(":");
     opacity = split[2];
   } else {
     [main, opacity] = split;
   }
-  const colors = main.replace(/([a-z])([0-9])/g, '$1-$2').split(/-/g);
+  const colors = main.replace(/([a-z])([0-9])/g, "$1-$2").split(/-/g);
   const [name] = colors;
   if (!name) return;
   let color;
   const bracket = h.bracketOfColor(main);
   const bracketOrMain = bracket || main;
-  if (bracketOrMain.match(/^#[\da-fA-F]+/g)) color = bracketOrMain;
-  else if (bracketOrMain.match(/^hex-[\da-fA-F]+/g)) color = `#${bracketOrMain.slice(4)}`;
-  else if (main.startsWith('$')) color = h.cssvar(main);
+  if (/^#[\da-fA-F]+/g.test(bracketOrMain)) color = bracketOrMain;
+  else if (/^hex-[\da-fA-F]+/g.test(bracketOrMain))
+    color = `#${bracketOrMain.slice(4)}`;
+  else if (main.startsWith("$")) color = h.cssvar(main);
   color = color || bracket;
-  let no = 'DEFAULT';
+  let no = "DEFAULT";
   if (!color) {
     let colorData;
     const [scale] = colors.slice(-1);
-    if (scale.match(/^\d+$/)) {
+    if (/^\d+$/.test(scale)) {
       no = scale;
       colorData = getThemeColor(theme, colors.slice(0, -1));
-      if (!colorData || typeof colorData === 'string') color = undefined;
+      if (!colorData || typeof colorData === "string") color = undefined;
       else color = colorData[no];
     } else {
       colorData = getThemeColor(theme, colors);
@@ -100,7 +107,7 @@ export function parseColor(body, theme) {
         [, no = no] = colors;
         colorData = getThemeColor(theme, [name]);
       }
-      if (typeof colorData === 'string') color = colorData;
+      if (typeof colorData === "string") color = colorData;
       else if (no && colorData) color = colorData[no];
     }
   }
@@ -110,7 +117,7 @@ export function parseColor(body, theme) {
     no,
     color,
     cssColor: parseCssColor(color),
-    alpha: h.bracket.cssvar.percent(opacity ?? ''),
+    alpha: h.bracket.cssvar.percent(opacity ?? ""),
   };
 }
 /**
@@ -163,11 +170,13 @@ export function colorableShadows(shadows, colorVar) {
   shadows = toArray(shadows);
   for (let i = 0; i < shadows.length; i++) {
     // shadow values are between 3 and 6 terms including color
-    const components = getComponents(shadows[i], ' ', 6);
+    const components = getComponents(shadows[i], " ", 6);
     if (!components || components.length < 3) return shadows;
     const color = parseCssColor(components.pop());
     if (color == null) return shadows;
-    colored.push(`${components.join(' ')} var(${colorVar}, ${colorToString(color)})`);
+    colored.push(
+      `${components.join(" ")} var(${colorVar}, ${colorToString(color)})`,
+    );
   }
   return colored;
 }
@@ -176,21 +185,26 @@ export function hasParseableColor(color, theme) {
 }
 export function resolveBreakpoints({ theme, generator }) {
   let breakpoints;
-  if (generator.userConfig && generator.userConfig.theme) breakpoints = generator.userConfig.theme.breakpoints;
+  if (generator.userConfig && generator.userConfig.theme)
+    breakpoints = generator.userConfig.theme.breakpoints;
   if (!breakpoints) breakpoints = theme.breakpoints;
   return breakpoints;
 }
 export function resolveVerticalBreakpoints({ theme, generator }) {
   let verticalBreakpoints;
-  if (generator.userConfig && generator.userConfig.theme) verticalBreakpoints = generator.userConfig.theme.verticalBreakpoints;
+  if (generator.userConfig && generator.userConfig.theme)
+    verticalBreakpoints = generator.userConfig.theme.verticalBreakpoints;
   if (!verticalBreakpoints) verticalBreakpoints = theme.verticalBreakpoints;
   return verticalBreakpoints;
 }
 export function makeGlobalStaticRules(prefix, property) {
-  return globalKeywords.map((keyword) => [`${prefix}-${keyword}`, { [property ?? prefix]: keyword }]);
+  return globalKeywords.map((keyword) => [
+    `${prefix}-${keyword}`,
+    { [property ?? prefix]: keyword },
+  ]);
 }
 export function getBracket(str, open, close) {
-  if (str === '') return;
+  if (str === "") return;
   const l = str.length;
   let parenthesis = 0;
   let opened = false;
@@ -208,7 +222,11 @@ export function getBracket(str, open, close) {
         --parenthesis;
         if (parenthesis < 0) return;
         if (parenthesis === 0) {
-          return [str.slice(openAt, i + 1), str.slice(i + 1), str.slice(0, openAt)];
+          return [
+            str.slice(openAt, i + 1),
+            str.slice(i + 1),
+            str.slice(0, openAt),
+          ];
         }
         break;
     }
@@ -216,27 +234,30 @@ export function getBracket(str, open, close) {
 }
 
 export function resolveArbitraryValues(value, unit, context) {
-  if (value.includes('_')) {
-    const valueWithoutUnderscore = value.replace(/_/g, ' ');
+  if (value.includes("_")) {
+    const valueWithoutUnderscore = value.replace(/_/g, " ");
     if (/\d/.test(valueWithoutUnderscore)) {
-      const digits = valueWithoutUnderscore.split(' ');
-      return digits?.map((number) => h.rem(number) || number).join(' ');
+      const digits = valueWithoutUnderscore.split(" ");
+      return digits?.map((number) => h.rem(number) || number).join(" ");
     } else {
       return valueWithoutUnderscore;
     }
   }
-  if (unit === 'rem') return h.rem(`${value}${unit}`);
-  if (unit === 'px' || context?.theme?.usingPixels) return h.px(value);
-  if (unit === '%') return `${h.percent(`${value}`) * 100}${unit}`;
-  if (value.startsWith('--')) return `var(${value})`;
+  if (unit === "rem") return h.rem(`${value}${unit}`);
+  if (unit === "px" || context?.theme?.usingPixels) return h.px(value);
+  if (unit === "%") return `${h.percent(`${value}`) * 100}${unit}`;
+  if (value.startsWith("--")) return `var(${value})`;
   return h.rem(value) || value;
 }
 
 export function resolveArbitraryCssVariable(val, alpha) {
-  let cssValue = val.startsWith('--') ? `var(${val})` : val;
+  let cssValue = val.startsWith("--") ? `var(${val})` : val;
   if (alpha) {
     if (!/^var\(--w-(s-)?rgb-/.test(cssValue)) {
-      cssValue = cssValue.replace(/^var\(--w-(s-)?(color-)?(.*)\)$/, 'var(--w-$1rgb-$3)');
+      cssValue = cssValue.replace(
+        /^var\(--w-(s-)?(color-)?(.*)\)$/,
+        "var(--w-$1rgb-$3)",
+      );
     }
     cssValue = `rgba(${cssValue},${percent(alpha.substring(1))})`;
   }

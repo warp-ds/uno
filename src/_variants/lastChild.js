@@ -1,5 +1,5 @@
 export const variantLastChild = (matcher) => {
-  if (!matcher?.startsWith('last-child:')) {
+  if (!matcher?.startsWith("last-child:")) {
     return matcher;
   }
   return {

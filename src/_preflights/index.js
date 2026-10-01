@@ -1,4 +1,5 @@
-import { resets } from './resets.js';
-import { transformBase } from './transform.js';
+import { resets } from "./resets.js";
+import { transformBase } from "./transform.js";
 
-export const preflights = (skipResets) => (skipResets ? [transformBase] : [transformBase, resets]);
+export const preflights = (skipResets) =>
+  skipResets ? [transformBase] : [transformBase, resets];

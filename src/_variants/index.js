@@ -11,10 +11,10 @@ import {
   variantAria,
   variantVariables,
   variantColorsMediaOrClass,
-} from '@unocss/preset-mini/variants';
+} from "@unocss/preset-mini/variants";
 
-import { variantLastChild } from './lastChild.js';
-import { variantSpaceAndDivide } from './spaceAndDivide.js';
+import { variantLastChild } from "./lastChild.js";
+import { variantSpaceAndDivide } from "./spaceAndDivide.js";
 
 export const variants = [
   variantLastChild,
@@ -30,7 +30,9 @@ export const variants = [
   variantDataAttribute,
   variantAria,
   variantVariables,
-  ...variantColorsMediaOrClass({ dark: { dark: ['[data-w-theme=dark]'], light: ['[data-w-theme=light]'] } }),
+  ...variantColorsMediaOrClass({
+    dark: { dark: ["[data-w-theme=dark]"], light: ["[data-w-theme=light]"] },
+  }),
 ];
 
 export {
