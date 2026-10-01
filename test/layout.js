@@ -1,25 +1,25 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test } from "vitest";
 
-import { setup } from './_helpers.js';
+import { setup } from "./_helpers.js";
 
 setup();
 
-describe('position', () => {
-  test('check static, fixed, absolute, relative and sticky values', async (t) => {
+describe("position", () => {
+  test("check static, fixed, absolute, relative and sticky values", async (t) => {
     const classes = [
-      'overflow-clip',
-      'overflow-auto',
-      'overflow-hidden',
-      'overflow-visible',
-      'overflow-scroll',
-      'overflow-x-auto',
-      'overflow-x-hidden',
-      'overflow-x-visible',
-      'overflow-x-scroll',
-      'overflow-y-auto',
-      'overflow-y-hidden',
-      'overflow-y-visible',
-      'overflow-y-scroll',
+      "overflow-clip",
+      "overflow-auto",
+      "overflow-hidden",
+      "overflow-visible",
+      "overflow-scroll",
+      "overflow-x-auto",
+      "overflow-x-hidden",
+      "overflow-x-visible",
+      "overflow-x-scroll",
+      "overflow-y-auto",
+      "overflow-y-hidden",
+      "overflow-y-visible",
+      "overflow-y-scroll",
     ];
 
     const { css } = await t.uno.generate(classes);
@@ -43,24 +43,24 @@ describe('position', () => {
   });
 });
 
-describe('columns', () => {
-  test('allows values 1 to 12', async ({ uno }) => {
+describe("columns", () => {
+  test("allows values 1 to 12", async ({ uno }) => {
     const range = Array.from({ length: 12 }).map((_, i) => i + 1);
     const classes = range.map((value) => `columns-${value}`);
     const { css } = await uno.generate(classes);
     expect(css).toMatchSnapshot();
   });
 
-  test('columns-auto', async ({ uno }) => {
+  test("columns-auto", async ({ uno }) => {
     const styles = {
-      ['columns-auto']: 'auto',
+      ["columns-auto"]: "auto",
     };
     const classes = Object.keys(styles);
     const { css } = await uno.generate(classes);
     expect(css).toMatchSnapshot();
   });
-  test('arbitrary values', async ({ uno }) => {
-    const classes = ['columns-[13]', 'columns-[25]', 'columns-[55]'];
+  test("arbitrary values", async ({ uno }) => {
+    const classes = ["columns-[13]", "columns-[25]", "columns-[55]"];
     const { css } = await uno.generate(classes);
     expect(css).toMatchSnapshot();
   });

@@ -1,13 +1,13 @@
-import { entriesToCss } from '@unocss/core';
+import { entriesToCss } from "@unocss/core";
 
-import { makeGlobalStaticRules } from '#utils';
+import { makeGlobalStaticRules } from "#utils";
 
 const listStyleTypes = {
-  disc: 'disc',
-  circle: 'circle',
-  square: 'square',
-  decimal: 'decimal',
-  'zero-decimal': 'decimal-leading-zero',
+  disc: "disc",
+  circle: "circle",
+  square: "square",
+  decimal: "decimal",
+  "zero-decimal": "decimal-leading-zero",
 };
 
 export const listStyle = [
@@ -16,30 +16,30 @@ export const listStyle = [
     /^list-(.+)$/,
     ([, alias]) => {
       const style = listStyleTypes[alias];
-      if (style) return { 'list-style-type': style };
+      if (style) return { "list-style-type": style };
     },
   ],
   // styles
-  ['list-outside', { 'list-style-position': 'outside' }],
-  ['list-inside', { 'list-style-position': 'inside' }],
-  ['list-none', { 'list-style-type': 'none' }],
-  ...makeGlobalStaticRules('list', 'list-style-type'),
+  ["list-outside", { "list-style-position": "outside" }],
+  ["list-inside", { "list-style-position": "inside" }],
+  ["list-none", { "list-style-type": "none" }],
+  ...makeGlobalStaticRules("list", "list-style-type"),
 ];
 
 const listCheckedItemStyles = entriesToCss(
   Object.entries({
-    position: 'relative',
-    'padding-left': '1.5em',
+    position: "relative",
+    "padding-left": "1.5em",
   }),
 );
 const checkmarkStyles = entriesToCss(
   Object.entries({
     content: '""',
-    position: 'absolute',
+    position: "absolute",
     left: 0,
-    width: '1em',
-    height: '1.2em',
-    background: 'no-repeat 50%/contain var(--w-icon-list-checked)',
+    width: "1em",
+    height: "1.2em",
+    background: "no-repeat 50%/contain var(--w-icon-list-checked)",
   }),
 );
 

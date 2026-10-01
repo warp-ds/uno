@@ -1,14 +1,14 @@
-import { expect, test } from 'vitest';
+import { expect, test } from "vitest";
 
-import { typographyAliases } from '../src/_shortcuts/typography.js';
+import { typographyAliases } from "../src/_shortcuts/typography.js";
 
-import { setup } from './_helpers.js';
+import { setup } from "./_helpers.js";
 
-import { textMap, lineHeightMap } from '#utils';
+import { textMap, lineHeightMap } from "#utils";
 
 setup();
 
-test('typography - text classes ', async ({ uno }) => {
+test("typography - text classes ", async ({ uno }) => {
   const classes = Object.entries(textMap)
     .map(([number, size]) => [`text-${number}`, `text-${size}`])
     .flat(1);
@@ -16,22 +16,27 @@ test('typography - text classes ', async ({ uno }) => {
   expect(css).toMatchSnapshot();
 });
 
-test('typography - leading classes ', async ({ uno }) => {
+test("typography - leading classes ", async ({ uno }) => {
   const classes = Object.entries(lineHeightMap)
     .map(([number, size]) => [`leading-${number}`, `leading-${size}`])
     .flat(1);
-  classes.push('leading-none');
+  classes.push("leading-none");
   const { css } = await uno.generate(classes);
   expect(css).toMatchSnapshot();
 });
 
-test('typography - leading classes with arbitrary values', async ({ uno }) => {
-  const classes = [`leading-[24]`, `leading-[11]`, `leading-[24px]`, `leading-[24rem]`].flat();
+test("typography - leading classes with arbitrary values", async ({ uno }) => {
+  const classes = [
+    `leading-[24]`,
+    `leading-[11]`,
+    `leading-[24px]`,
+    `leading-[24rem]`,
+  ].flat();
   const { css } = await uno.generate(classes);
   expect(css).toMatchSnapshot();
 });
 
-test('shortcuts', async ({ uno }) => {
+test("shortcuts", async ({ uno }) => {
   const classes = Object.keys(typographyAliases);
   const { css } = await uno.generate(classes);
   expect(css).toMatchSnapshot();

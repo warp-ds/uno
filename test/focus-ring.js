@@ -1,11 +1,17 @@
-import { expect, test } from 'vitest';
+import { expect, test } from "vitest";
 
-import { setup } from './_helpers.js';
+import { setup } from "./_helpers.js";
 
 setup();
 
-test('focus ring', async (t) => {
-  const classes = ['focusable', 'peer-focus:focusable', 'group-focus:focusable', 'focus-within:focusable', 'focusable-inset'];
+test("focus ring", async (t) => {
+  const classes = [
+    "focusable",
+    "peer-focus:focusable",
+    "group-focus:focusable",
+    "focus-within:focusable",
+    "focusable-inset",
+  ];
 
   const { css } = await t.uno.generate(classes);
 

@@ -1,25 +1,25 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test } from "vitest";
 
-import { setup } from './_helpers.js';
+import { setup } from "./_helpers.js";
 
 setup();
 
-describe('align', () => {
-  test('vertical align rules generates expected styles based on allowed classes', async (t) => {
+describe("align", () => {
+  test("vertical align rules generates expected styles based on allowed classes", async (t) => {
     const classes = [
-      'align-mid',
-      'align-base',
-      'align-btm',
-      'align-baseline',
-      'align-top',
-      'align-start',
-      'align-middle',
-      'align-bottom',
-      'align-end',
-      'align-text-top',
-      'align-text-bottom',
-      'align-sub',
-      'align-super',
+      "align-mid",
+      "align-base",
+      "align-btm",
+      "align-baseline",
+      "align-top",
+      "align-start",
+      "align-middle",
+      "align-bottom",
+      "align-end",
+      "align-text-top",
+      "align-text-bottom",
+      "align-sub",
+      "align-super",
     ];
 
     const { css } = await t.uno.generate(classes);
@@ -42,16 +42,23 @@ describe('align', () => {
     `);
   });
 
-  test('vertical align rules does not render styles based on faulty classes', async (t) => {
-    const classes = ['align-foo'];
+  test("vertical align rules does not render styles based on faulty classes", async (t) => {
+    const classes = ["align-foo"];
 
     const { css } = await t.uno.generate(classes);
 
     expect(css).toMatchInlineSnapshot('""');
   });
 
-  test('text align rules generates expected styles based on allowed classes', async (t) => {
-    const classes = ['text-center', 'text-left', 'text-right', 'text-justify', 'text-start', 'text-end'];
+  test("text align rules generates expected styles based on allowed classes", async (t) => {
+    const classes = [
+      "text-center",
+      "text-left",
+      "text-right",
+      "text-justify",
+      "text-start",
+      "text-end",
+    ];
 
     const { css } = await t.uno.generate(classes);
 
@@ -66,8 +73,8 @@ describe('align', () => {
     `);
   });
 
-  test('text-align rules does not render styles based on faulty classes', async (t) => {
-    const classes = ['text-foo'];
+  test("text-align rules does not render styles based on faulty classes", async (t) => {
+    const classes = ["text-foo"];
 
     const { css } = await t.uno.generate(classes);
 

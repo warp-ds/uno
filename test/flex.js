@@ -1,11 +1,11 @@
-import { expect, test } from 'vitest';
+import { expect, test } from "vitest";
 
-import { setup } from './_helpers.js';
+import { setup } from "./_helpers.js";
 
 setup();
 
-test('flex with arbitrary values', async (t) => {
-  const classes = ['flex-[2_2_0%]'];
+test("flex with arbitrary values", async (t) => {
+  const classes = ["flex-[2_2_0%]"];
 
   const { css } = await t.uno.generate(classes);
   expect(css).toMatchInlineSnapshot(`
@@ -14,8 +14,13 @@ test('flex with arbitrary values', async (t) => {
   `);
 });
 
-test('flex directions', async (t) => {
-  const classes = ['flex-row', 'flex-row-reverse', 'flex-col', 'flex-col-reverse'];
+test("flex directions", async (t) => {
+  const classes = [
+    "flex-row",
+    "flex-row-reverse",
+    "flex-col",
+    "flex-col-reverse",
+  ];
 
   const { css } = await t.uno.generate(classes);
   expect(css).toMatchInlineSnapshot(`
@@ -27,8 +32,8 @@ test('flex directions', async (t) => {
     `);
 });
 
-test('flex wraps', async (t) => {
-  const classes = ['flex-wrap', 'flex-wrap-reverse', 'flex-nowrap'];
+test("flex wraps", async (t) => {
+  const classes = ["flex-wrap", "flex-wrap-reverse", "flex-nowrap"];
 
   const { css } = await t.uno.generate(classes);
   expect(css).toMatchInlineSnapshot(`
@@ -39,8 +44,8 @@ test('flex wraps', async (t) => {
     `);
 });
 
-test('flex vitals', async (t) => {
-  const classes = ['flex-1', 'flex-auto', 'flex-initial', 'flex-none'];
+test("flex vitals", async (t) => {
+  const classes = ["flex-1", "flex-auto", "flex-initial", "flex-none"];
 
   const { css } = await t.uno.generate(classes);
   expect(css).toMatchInlineSnapshot(`
@@ -52,16 +57,19 @@ test('flex vitals', async (t) => {
     `);
 });
 
-test('flex invalid', async (t) => {
-  const classes = ['flex-0', 'flex-shrink', 'flex-shrink-0', 'flex-grow-0'];
+test("flex invalid", async (t) => {
+  const classes = ["flex-0", "flex-shrink", "flex-shrink-0", "flex-grow-0"];
 
   const { css } = await t.uno.generate(classes);
   expect(css).toMatchInlineSnapshot('""');
 });
 
-test('flex shrink/grow', async (t) => {
-  const autoClasses = ['grow', 'shrink'];
-  const classes = Array.from({ length: 6 }, (_, index) => [`shrink-${index}`, `grow-${index}`]).flat();
+test("flex shrink/grow", async (t) => {
+  const autoClasses = ["grow", "shrink"];
+  const classes = Array.from({ length: 6 }, (_, index) => [
+    `shrink-${index}`,
+    `grow-${index}`,
+  ]).flat();
 
   const { css } = await t.uno.generate([...classes, ...autoClasses]);
   expect(css).toMatchInlineSnapshot(`
@@ -83,37 +91,45 @@ test('flex shrink/grow', async (t) => {
     `);
 });
 
-test('flex shrink/grow with arbitrary values', async (t) => {
-  const autoClasses = ['grow', 'shrink'];
-  const classes = Array.from({ length: 6 }, (_, index) => [`shrink-[${index}]`, `grow-[${index}]`]).flat();
+test("flex shrink/grow with arbitrary values", async (t) => {
+  const autoClasses = ["grow", "shrink"];
+  const classes = Array.from({ length: 6 }, (_, index) => [
+    `shrink-[${index}]`,
+    `grow-[${index}]`,
+  ]).flat();
 
   const { css } = await t.uno.generate([...classes, ...autoClasses]);
   expect(css).toMatchSnapshot();
 });
 
-test('flex-basis', async (t) => {
-  const autoClasses = ['basis'];
+test("flex-basis", async (t) => {
+  const autoClasses = ["basis"];
   const classes = [
-    'basis-1',
-    'basis-2',
-    'basis-4',
-    'basis-8',
-    'basis-16',
-    'basis-32',
-    'basis-48',
-    'basis-64',
-    'basis-1/2',
-    'basis-1/5',
-    'basis-1/4',
-    'basis-2/5',
+    "basis-1",
+    "basis-2",
+    "basis-4",
+    "basis-8",
+    "basis-16",
+    "basis-32",
+    "basis-48",
+    "basis-64",
+    "basis-1/2",
+    "basis-1/5",
+    "basis-1/4",
+    "basis-2/5",
   ];
 
   const { css } = await t.uno.generate([...classes, ...autoClasses]);
   expect(css).toMatchSnapshot();
 });
-test('flex-basis with arbitrary values', async (t) => {
-  const autoClasses = ['basis'];
-  const classes = ['basis-[15]', 'basis-[15rem]', 'basis-[15px]', 'basis-[15%]'];
+test("flex-basis with arbitrary values", async (t) => {
+  const autoClasses = ["basis"];
+  const classes = [
+    "basis-[15]",
+    "basis-[15rem]",
+    "basis-[15px]",
+    "basis-[15%]",
+  ];
 
   const { css } = await t.uno.generate([...classes, ...autoClasses]);
   expect(css).toMatchSnapshot();
