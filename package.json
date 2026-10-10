@@ -40,20 +40,20 @@
   "author": "@djh",
   "license": "Apache-2.0",
   "dependencies": {
-    "@unocss/core": "~66.0.0",
-    "@unocss/preset-mini": "~66.0.0",
-    "@unocss/rule-utils": "~66.0.0"
+    "@unocss/core": "~66.10.0",
+    "@unocss/preset-mini": "~66.10.0",
+    "@unocss/rule-utils": "~66.10.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "16.0.3",
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^11.0.0",
-    "@unocss/autocomplete": "~66.0.0",
+    "@unocss/autocomplete": "~66.10.0",
     "@warp-ds/eslint-config": "2.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^10.6.0",
     "prettier": "^3.8.4",
-    "rollup": "4.59.0",
+    "rollup": "4.64.3",
     "semantic-release": "^25.0.5",
     "unocss": "^66.7.2",
     "vitest": "^4.1.9"
