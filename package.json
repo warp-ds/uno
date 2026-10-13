@@ -56,7 +56,7 @@
     "rollup": "4.59.0",
     "semantic-release": "^25.0.5",
     "unocss": "^66.7.2",
-    "vitest": "^4.1.9"
+    "vitest": "^5.0.0"
   },
   "publishConfig": {
     "access": "public"
