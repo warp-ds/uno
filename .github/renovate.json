@@ -5,7 +5,7 @@
   ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["^@unocss/"]
+      "matchPackagePatterns": ["^@unocss/"],
       "enabled": false
     }
   ]
