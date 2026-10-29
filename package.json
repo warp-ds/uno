@@ -53,7 +53,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^10.6.0",
     "prettier": "^3.8.4",
-    "rollup": "4.64.9",
+    "rollup": "4.66.0",
     "semantic-release": "^25.0.5",
     "unocss": "^66.7.2",
     "vitest": "^5.0.0"
