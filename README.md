@@ -1,5 +1,7 @@
 # uno - a UnoCSS preset
 
+ℹ️ Development of Warp has moved in-house. This repository is read-only.
+
 ## How to contribute
 
 If you'd like to contribute to `@warp-ds/uno`, start by reviewing the [contributing guidelines](https://github.com/warp-ds/uno/blob/main/CONTRIBUTING.md).
